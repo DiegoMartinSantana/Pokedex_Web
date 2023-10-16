@@ -11,25 +11,16 @@ namespace Pokedex_Web
 {
 
 
-    public partial class About
+    public partial class Cardswithforeach
     {
 
         /// <summary>
-        /// Control gdwpokemons.
+        /// Control rptrepetidor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdwpokemons;
-
-        /// <summary>
-        /// Control btnagregarpoke.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnagregarpoke;
+        protected global::System.Web.UI.WebControls.Repeater rptrepetidor;
     }
 }

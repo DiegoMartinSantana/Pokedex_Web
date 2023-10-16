@@ -102,8 +102,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cardswithrepeater.aspx" />
+    <Content Include="FormPokemons.aspx" />
     <Content Include="ListPokemons.aspx" />
-    <Content Include="Contact.aspx" />
+    <Content Include="Cards.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -187,6 +189,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Cardswithrepeater.aspx.cs">
+      <DependentUpon>Cardswithrepeater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cardswithrepeater.aspx.designer.cs">
+      <DependentUpon>Cardswithrepeater.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormPokemons.aspx.cs">
+      <DependentUpon>FormPokemons.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormPokemons.aspx.designer.cs">
+      <DependentUpon>FormPokemons.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListPokemons.aspx.cs">
       <DependentUpon>ListPokemons.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -195,12 +211,12 @@
       <DependentUpon>ListPokemons.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Cards.aspx.cs">
+      <DependentUpon>Cards.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Cards.aspx.designer.cs">
+      <DependentUpon>Cards.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

@@ -49,8 +49,11 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="ListPokemons.aspx">List Pokemons </a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
-                    </ul>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Cards.aspx">Cards with foreach  </a></li>
+                        <li class ="nav-item "> <a class="nav-link" runat ="server" href ="Cardswithrepeater.aspx">Cards with repeater</a></li>
+                        <li class ="nav-item "> <a class="nav-link" runat ="server" href ="FormPokemons.aspx">Form Pokemons </a></li>
+                   
+                        </ul>
                 </div>
             </div>
         </nav>
