@@ -10,7 +10,7 @@ namespace negocio
 {
     public class PokemonNegocio
     {
-        public List <Pokemon> listwithstoredprocedure()
+        public List<Pokemon> listwithstoredprocedure()
         {
             List<Pokemon> lista = new List<Pokemon>();
             AccesoDatos datos = new AccesoDatos();
@@ -35,7 +35,7 @@ namespace negocio
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)datos.Lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)datos.Lector["Debilidad"];
-
+                    aux.Activo =(bool) datos.Lector["Activo"];
                     lista.Add(aux);
                 }
 
@@ -47,7 +47,7 @@ namespace negocio
             }
 
         }
-        public List<Pokemon> listar()
+        public List<Pokemon> listar(string id = "")//recibe un id. si no lo reicbe lo pone vacio.
         {
             List<Pokemon> lista = new List<Pokemon>();
             SqlConnection conexion = new SqlConnection();
@@ -58,7 +58,12 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad And P.Activo = 1";
+                comando.CommandText = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id, P.Activo From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad  ";
+                if (id != "") // "" es distinto a nulo.
+                {
+                    comando.CommandText += " and P.Id = " + id; // si vino un id se lo paso a la consulta. porque entonces vamos amodificar el obnjeto.
+
+                }
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -74,7 +79,7 @@ namespace negocio
 
                     //if(!(lector.IsDBNull(lector.GetOrdinal("UrlImagen"))))
                     //    aux.UrlImagen = (string)lector["UrlImagen"];
-                    if(!(lector["UrlImagen"] is DBNull))
+                    if (!(lector["UrlImagen"] is DBNull))
                         aux.UrlImagen = (string)lector["UrlImagen"];
 
                     aux.Tipo = new Elemento();
@@ -83,7 +88,7 @@ namespace negocio
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)lector["Debilidad"];
-
+                    aux.Activo = (bool)lector["Activo"];
                     lista.Add(aux);
                 }
 
@@ -96,7 +101,35 @@ namespace negocio
             }
 
         }
+        public void agregarwithsp(Pokemon nuevo)
+        {
 
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearSp("spAltapokemon");
+                datos.setearParametro("@numero", nuevo.Numero);
+                datos.setearParametro("@nombre", nuevo.Nombre);
+                datos.setearParametro("@desc", nuevo.Descripcion);
+                datos.setearParametro("@img", nuevo.UrlImagen);
+
+                datos.setearParametro("@idtipo", nuevo.Tipo.Id);
+                datos.setearParametro("@iddebilidad", nuevo.Debilidad.Id);
+                // datos.setearParametro("@idevolucion", null);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
         public void agregar(Pokemon nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -152,7 +185,7 @@ namespace negocio
             try
             {
                 string consulta = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad And P.Activo = 1 And ";
-                if(campo == "Número")
+                if (campo == "Número")
                 {
                     switch (criterio)
                     {
@@ -167,7 +200,7 @@ namespace negocio
                             break;
                     }
                 }
-                else if(campo == "Nombre")
+                else if (campo == "Nombre")
                 {
                     switch (criterio)
                     {
@@ -234,7 +267,7 @@ namespace negocio
             {
                 AccesoDatos datos = new AccesoDatos();
                 datos.setearConsulta("delete from pokemons where id = @id");
-                datos.setearParametro("@id",id);
+                datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
 
             }
@@ -244,13 +277,15 @@ namespace negocio
             }
         }
 
-        public void eliminarLogico(int id)
+        public void eliminarLogico(int id, bool activo=false) //activa o inactiva // por defecto es false
         {
             try
             {
+
                 AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("update POKEMONS set Activo = 0 Where id = @id");
+                datos.setearConsulta("update POKEMONS set Activo = @activo  Where id = @id"); // ahora recibe el parametro activo,  apartir de ahi guarda segun como esta.
                 datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -259,6 +294,56 @@ namespace negocio
             }
         }
 
+        public void modificarwithsp(Pokemon poke)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSp("spmodificar");
+                datos.setearParametro("@numero", poke.Numero);
+                datos.setearParametro("@nombre", poke.Nombre);
+                datos.setearParametro("@desc", poke.Descripcion);
+                datos.setearParametro("@img", poke.UrlImagen);
+                datos.setearParametro("@idTipo", poke.Tipo.Id);
+                datos.setearParametro("@idDebilidad", poke.Debilidad.Id);
+                datos.setearParametro("@id", poke.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminarwithsp(int  id)
+        {
+
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearSp("speliminar");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+       
+
+        //throw new NotImplementedException();
 
     }
 }
+

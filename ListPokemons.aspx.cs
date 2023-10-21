@@ -5,19 +5,23 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using dominio;
 namespace Pokedex_Web
 {
     public partial class About : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            PokemonNegocio negocio = new PokemonNegocio();
-            
-            
+            if (!IsPostBack)
+            {
+                PokemonNegocio negocio = new PokemonNegocio();
+
+
                 gdwpokemons.DataSource = negocio.listwithstoredprocedure();
                 gdwpokemons.DataBind();
-            
+                List<Pokemon> lista = (List<Pokemon>)negocio.listwithstoredprocedure();
+                Session.Add("listnofiltrada", lista);
+            }
         }
 
         protected void gdwpokemons_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -35,6 +39,16 @@ namespace Pokedex_Web
         protected void btnagregarpoke_Click(object sender, EventArgs e)
         {
             Response.Redirect("Formpokemons.aspx");
+        }
+
+        protected void txtfiltrorapido_TextChanged(object sender, EventArgs e)
+        {
+            List<Pokemon> listfiltrada =(List<Pokemon> )Session["listnofiltrada"];
+            listfiltrada = listfiltrada.FindAll(x => x.Nombre.ToUpper().Contains(txtfiltrorapido.Text.ToUpper())); // imrotante lo que fitre tmbien sea to upper
+            //x = pokemon. busca en mayus (todo) si contiene algo del filtro textorapido!
+            gdwpokemons.DataSource = listfiltrada;
+            gdwpokemons.DataBind();
+
         }
     }
 }
