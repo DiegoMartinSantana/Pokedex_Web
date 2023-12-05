@@ -14,6 +14,14 @@ namespace Pokedex_Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user"] == null)
+            {
+                Session.Add("error", "Necesita loguearse para acceder");
+                Response.Redirect("Error.aspx", false);
+
+            }
+
+                
             txtid.Enabled = false; //id es automatico. no tiene que ser cargable.
             Eliminar = false;
             //LOS DESPEGABLES LOS CARGAMOS CON EL NEGOCIO NO ESTATICOS.,ASI DESPUES SI AGREGO UNO MAS SE AGREGA AUTOMATICO.

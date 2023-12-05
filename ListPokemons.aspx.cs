@@ -1,26 +1,33 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using dominio;
 namespace Pokedex_Web
 {
     public partial class About : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["user"] == null)
             {
+                Session.Add("error", "Necesita loguearse para acceder");
+                Response.Redirect("Error.aspx", false);
+
+            }
+                    //va entre otro parentesis porque quiero extraer algo
+            
+
+          if (!IsPostBack)
+            {
+
                 PokemonNegocio negocio = new PokemonNegocio();
-
-
                 gdwpokemons.DataSource = negocio.listwithstoredprocedure();
-                gdwpokemons.DataBind();
                 List<Pokemon> lista = (List<Pokemon>)negocio.listwithstoredprocedure();
                 Session.Add("listnofiltrada", lista);
+                gdwpokemons.DataBind();
+
             }
         }
 
@@ -43,11 +50,61 @@ namespace Pokedex_Web
 
         protected void txtfiltrorapido_TextChanged(object sender, EventArgs e)
         {
-            List<Pokemon> listfiltrada =(List<Pokemon> )Session["listnofiltrada"];
+            List<Pokemon> listfiltrada = (List<Pokemon>)Session["listnofiltrada"];
             listfiltrada = listfiltrada.FindAll(x => x.Nombre.ToUpper().Contains(txtfiltrorapido.Text.ToUpper())); // imrotante lo que fitre tmbien sea to upper
             //x = pokemon. busca en mayus (todo) si contiene algo del filtro textorapido!
             gdwpokemons.DataSource = listfiltrada;
             gdwpokemons.DataBind();
+
+        }
+        protected void chkavanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            txtfiltrorapido.Enabled = !chkavanzado.Checked; //si esta checked lo ocultaa
+        }
+        protected void ddlcampo_SelectedIndexChanged(object sender, EventArgs e)
+        {                //limpio los items
+
+            ddlcriterio.Items.Clear();
+
+            if (ddlcampo.SelectedItem.ToString() == "Número")
+            {
+
+                ddlcriterio.Items.Add("Mayor a");
+                ddlcriterio.Items.Add("Menor a");
+                ddlcriterio.Items.Add("Igual a");
+
+
+            }
+            else
+            {
+                ddlcriterio.Items.Add("Empieza con");
+                ddlcriterio.Items.Add("Contiene");
+                ddlcriterio.Items.Add("Termina con");
+            }
+        }
+
+        protected void btnbuscaravanzado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PokemonNegocio negocio = new PokemonNegocio();
+                gdwpokemons.DataSource = negocio.filtrar(ddlcampo.SelectedItem.ToString(), ddlcriterio.SelectedItem.ToString(), txtfiltro.Text, ddlestado.SelectedItem.ToString());
+
+                gdwpokemons.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+
+
+        }
+
+        protected void btnlogout_Click(object sender, EventArgs e)
+        {
+            Session.Add("User", null);
+            Response.Redirect("Login.aspx");
 
         }
     }
