@@ -14,12 +14,7 @@ namespace Pokedex_Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] == null)
-            {
-                Session.Add("error", "Necesita loguearse para acceder");
-                Response.Redirect("Error.aspx", false);
-
-            }
+           
 
                 
             txtid.Enabled = false; //id es automatico. no tiene que ser cargable.

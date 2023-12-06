@@ -29,7 +29,7 @@ namespace negocio
             correo = new MailMessage();
             correo.From = new MailAddress("noresponder@pruebaasp.com");
             correo.To.Add(emaildestino);
-            correo.Subject = asunto;
+            correo.Subject = asunto; 
             correo.IsBodyHtml = true;
             correo.Body = mensaje;
 

@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                acceso.setearConsulta("Select Id, TypeUser, Pass From Users  Where Pass=@pass and Usuario=@usuario");
+                acceso.setearConsulta("Select Id, TypeUser, Pass From User  Where Pass=@pass and Usuario=@usuario");
                 acceso.setearParametro("@usuario", usuario.Usuario);
                 acceso.setearParametro("@pass", usuario.Pass);
                 acceso.ejecutarLectura();

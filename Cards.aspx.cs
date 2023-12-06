@@ -13,12 +13,7 @@ namespace Pokedex_Web
         public List<Pokemon> List { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] == null)
-            {
-                Session.Add("error", "Necesita loguearse para acceder");
-                Response.Redirect("Error.aspx", false);
-
-            }
+            
 
             PokemonNegocio negocio = new PokemonNegocio();
             List = negocio.listwithstoredprocedure(); // AHORA YAPUEDO USAR LA LISTA EN MI FRONT.

@@ -60,7 +60,21 @@ namespace negocio
                 throw ex;
             }
         }
-
+        public int ejecutarScalar()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return int.Parse(comando.ExecuteScalar().ToString()); //primero paso a string y despues casteo a string
+                //ME DEVUELVE EL ID !
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public void setearParametro(string nombre, object valor)
         {
             comando.Parameters.AddWithValue(nombre, valor);
