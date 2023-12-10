@@ -18,7 +18,7 @@ namespace Pokedex_Web
         protected void btncancelar_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("Login.aspx", false);
+            Response.Redirect("Login2.aspx", false);
 
 
         }
@@ -37,7 +37,7 @@ namespace Pokedex_Web
                 pepe.email = txtemailreg.Text;
                 pepe.pass = txtpasswordreg.Text;
                 
-
+                
                 pepe.Id = traineeNegocio.insertar(pepe); // me devuelve  el id!
                 emailservice.armarCorreo(pepe.email, "Welcome", "Congratulations. You are a Pokemon Trainee! ");
                 emailservice.enviarCorreo();
@@ -52,7 +52,7 @@ namespace Pokedex_Web
             {
 
                 Session.Add("error", ex.ToString());
-                Response.Redirect("Erorr.aspx", false);
+                Response.Redirect("Erorr2.aspx", false);
             }
 
 

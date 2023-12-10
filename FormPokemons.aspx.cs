@@ -46,7 +46,7 @@ namespace Pokedex_Web
             catch (Exception ex) //la mando a la sessiion para despues trabajarla en otro form o algo..
             {
                 Session.Add("error", ex);
-                throw;
+                Response.Redirect("Error2.aspx", false);
             }
             //si el id es distinto de nulo /  guardalo                            / sino vacio
             string idmodificar = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
@@ -122,7 +122,8 @@ namespace Pokedex_Web
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                throw;
+                Response.Redirect("Error2.aspx", false);
+                
             }
 
 
@@ -158,8 +159,8 @@ namespace Pokedex_Web
             catch (Exception ex)
             {
                 Session.Add("error", ex);
+                Response.Redirect("Error2.aspx", false);
 
-                throw;
             }
         }
 

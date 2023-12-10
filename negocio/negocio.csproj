@@ -47,7 +47,6 @@
     <Compile Include="ElementoNegocio.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="TraineeNegocio.cs" />
-    <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="PokemonNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

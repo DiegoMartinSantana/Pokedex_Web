@@ -11,7 +11,7 @@ namespace Pokedex_Web
 {
 
 
-    public partial class WebForm2
+    public partial class Error2
     {
 
         /// <summary>

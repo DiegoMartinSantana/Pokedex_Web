@@ -6,7 +6,7 @@
         <div class="col-2">
             <div class="mb-3">
                 <!-- en una funcion esto.. --> 
-                <%if ( Session["User"]!= null &&   ((dominio.Users)Session["User"]).Tipo == dominio.TypeUser.Admin) // si es admin
+                <%if ( Session["trainee"]!= null &&   ((dominio.Trainee)Session["trainee"]).admin == true) // si es admin
                     {
                         txtshowuser.Text = " Welcome User type Admin. ";
                     }

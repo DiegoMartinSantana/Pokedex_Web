@@ -90,7 +90,7 @@ namespace Pokedex_Web
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                throw;
+                Response.Redirect("Error2.aspx", false);
             }
 
 
@@ -98,8 +98,8 @@ namespace Pokedex_Web
 
         protected void btnlogout_Click(object sender, EventArgs e)
         {
-            Session.Add("User", null);
-            Response.Redirect("Login.aspx");
+            Session.Add("Trainee", null);
+            Response.Redirect("Login2.aspx");
 
         }
     }

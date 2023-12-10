@@ -1,14 +1,15 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using dominio;
-using negocio;
+
 namespace Pokedex_Web
 {
-    public partial class _Default : Page
+    public partial class Login2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,40 +17,40 @@ namespace Pokedex_Web
         }
         protected void btngopokedex_Click(object sender, EventArgs e)
         {
-            Users user;
-            UsuarioNegocio negociouser = new UsuarioNegocio();
+            Trainee user = new Trainee();
+            TraineeNegocio negociotrainee = new TraineeNegocio();
 
             //guardo el contenido..
             try
             {
 
-                user = new Users(txtusername.Text, txtpassword.Text, false); //lo pisa la Bd si es distinto
+                user.email = txtemail.Text;
+                user.pass = txtpassword.Text;
+               
 
-                bool activado = negociouser.loguear(user);
+                bool activado = negociotrainee.loguear(user);
 
                 if (activado)
                 {
                     //lo guardo en session para manipularlo
-                    Session.Add("User", user);
+                    Session.Add("trainee", user);
                     Response.Redirect("ListPokemons.aspx", false); // viaja a Menu
 
                 }
                 else
                 {
                     Session.Add("error", "USUARIO O CONTRASEÑA INCORRECTOS");
-                    Response.Redirect("Error.aspx", false);
+                    Response.Redirect("Error2.aspx", false);
                 }
 
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString()); // despues lo guarda en una txt asique tiene que ser tipo string
-                Response.Redirect("Error.aspx", false);
+                Response.Redirect("Error2.aspx", false);
 
             }
         }
-
-
 
     }
 }

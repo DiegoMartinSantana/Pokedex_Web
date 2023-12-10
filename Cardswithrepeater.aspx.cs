@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using negocio;
 using dominio;
+using Seguridad;
 namespace Pokedex_Web
 {
     public partial class Cardswithforeach : System.Web.UI.Page
@@ -13,7 +14,12 @@ namespace Pokedex_Web
         public  List<Pokemon> listapoke { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Seguridad.Seguridad.esAdmin(Session["trainee"])))
+            {
+                Session.Add("error", "Necesita ser Admin para visitar esa Pagina");
 
+                Response.Redirect("Error2.aspx", false);
+            }
          
             PokemonNegocio negocio = new PokemonNegocio();
             listapoke = negocio.listwithstoredprocedure();
