@@ -4,7 +4,7 @@
 
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Pokedex Web </title>
@@ -13,7 +13,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -40,7 +40,7 @@
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" runat="server" >Pokedex Web </a>
+                <a class="navbar-brand" runat="server">Pokedex Web </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -49,19 +49,33 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="ListPokemons.aspx">List Pokemons </a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="Cards.aspx">Cards with foreach  </a></li>
-                        <li class ="nav-item "> <a class="nav-link" runat ="server" href ="Cardswithrepeater.aspx">Cards with repeater</a></li>
-                        <li class ="nav-item "> <a class="nav-link" runat ="server" href ="FormPokemons.aspx">Form Pokemons </a></li>
+                        <li class="nav-item "><a class="nav-link" runat="server" href="Cardswithrepeater.aspx">Cards with repeater</a></li>
+                        <li class="nav-item "><a class="nav-link" runat="server" href="FormPokemons.aspx">Form Pokemons </a></li>
 
 
-                   
-                        </ul>
-                </div>
+
+                </div>x
+                <%if (Session["trainee"] == null)
+                    {
+                %>
                 <div class="d-flex">
-                    <a href ="Login2.aspx" class="btn btn-success me-2">Login</a>
-                    <a href ="Registro.aspx" class="btn btn-outline-primary m-auto">Registrarse</a>
+                    <a href="Login2.aspx" class="btn btn-success me-2">Login</a>
+                    <a href="Registro.aspx" class="btn btn-outline-primary m-auto">Registrarse</a>
 
-                    <asp:Image  ID="imgAvatar" style="height:40px; width:40px; border-radius:50%;" runat="server" />   
                 </div>
+                <%}
+                    else
+                    {  %>
+                <div class="d-flex">
+
+                     <a href="Perfil.aspx" class="btn btn-success me-2">Mi perfil</a>
+                    <asp:Image ID="imgAvatar" Style="height: 40px; width: 40px; border-radius: 50%;" runat="server" />
+
+                    <asp:Button Text="Logout" ID="btnlogout" runat="server" CssClass="btn btn-outline-danger" OnClick="btnlogout_Click" />
+
+
+                </div>
+                <%} %>
             </div>
         </nav>
         <div class="container body-content">

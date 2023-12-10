@@ -11,106 +11,133 @@ namespace Pokedex_Web
 {
 
 
-    public partial class About
+    public partial class Perfil
     {
 
         /// <summary>
-        /// Control txtshowuser.
+        /// Control Lblid.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtshowuser;
+        protected global::System.Web.UI.WebControls.Label Lblid;
 
         /// <summary>
-        /// Control txtfiltrorapido.
+        /// Control txtid.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfiltrorapido;
+        protected global::System.Web.UI.WebControls.TextBox txtid;
 
         /// <summary>
-        /// Control chkavanzado.
+        /// Control Lblemailuser.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkavanzado;
+        protected global::System.Web.UI.WebControls.Label Lblemailuser;
 
         /// <summary>
-        /// Control lblCampo.
+        /// Control txtemailuser.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCampo;
+        protected global::System.Web.UI.WebControls.TextBox txtemailuser;
 
         /// <summary>
-        /// Control ddlcampo.
+        /// Control lblname.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlcampo;
+        protected global::System.Web.UI.WebControls.Label lblname;
 
         /// <summary>
-        /// Control ddlcriterio.
+        /// Control Txtname.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlcriterio;
+        protected global::System.Web.UI.WebControls.TextBox Txtname;
 
         /// <summary>
-        /// Control txtfiltro.
+        /// Control lblapelllido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfiltro;
+        protected global::System.Web.UI.WebControls.Label lblapelllido;
 
         /// <summary>
-        /// Control ddlestado.
+        /// Control Txtapellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlestado;
+        protected global::System.Web.UI.WebControls.TextBox Txtapellido;
 
         /// <summary>
-        /// Control btnbuscaravanzado.
+        /// Control lblnacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnbuscaravanzado;
+        protected global::System.Web.UI.WebControls.Label lblnacimiento;
 
         /// <summary>
-        /// Control gdwpokemons.
+        /// Control txtBorn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdwpokemons;
+        protected global::System.Web.UI.WebControls.TextBox txtBorn;
 
         /// <summary>
-        /// Control btnagregarpoke.
+        /// Control lblurlimg.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnagregarpoke;
+        protected global::System.Web.UI.WebControls.Label lblurlimg;
+
+        /// <summary>
+        /// Control File1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile File1;
+
+        /// <summary>
+        /// Control imgperfilgrande.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgperfilgrande;
+
+        /// <summary>
+        /// Control btnsave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnsave;
     }
 }

@@ -19,11 +19,7 @@
 
             </div>
         </div>
-        <div class="col-2">
-            <div class="mb-3">
-                <asp:Button Text="Logout" ID="btnlogout" runat="server" CssClass="btn btn-dark" OnClick="btnlogout_Click" />
-            </div>
-        </div>
+        
     </div>
     <h2>This is your list of Pokemons </h2>
 
