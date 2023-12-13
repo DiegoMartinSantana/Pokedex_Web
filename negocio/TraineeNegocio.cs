@@ -39,11 +39,12 @@ namespace negocio
             try
             {
 
-                access.setearConsulta("Update Users set urlImagenPerfil= @img ,nombre = @name ,apellido= @surname where ID = @id ");
-                access.setearParametro("@img", (object)user.imgPerfil ?? DBNull.Value); // el ?? pone en null el value si es nulo, porque es el null que se guarda en una bd
+                access.setearConsulta("Update Users set urlImagenPerfil= @img ,nombre = @name ,apellido= @surname  where ID = @id ");
+                access.setearParametro("@img", (object)user.imgPerfil ?? DBNull.Value); // el ?? pone en null el value si es nulo, porque es el DBnull que se guarda en una bd
                 access.setearParametro("@name", user.nombre);
                 access.setearParametro("@surname", user.apellido);
                 access.setearParametro("@id", user.Id);
+
 
 
                 access.ejecutarAccion();
@@ -68,7 +69,7 @@ namespace negocio
 
             try
             {
-                acceso.setearConsulta("Select Id, Admin ,Email,Nombre,Apellido,urlImagenPerfil, Pass From Users  Where Pass= @pass and Email= @email");
+                acceso.setearConsulta("Select Id, Admin ,Email,Nombre,Apellido,urlImagenPerfil Pass From Users  Where Pass= @pass and Email= @email");
                 acceso.setearParametro("@email", usuario.email);
                 acceso.setearParametro("@pass", usuario.pass);
                
