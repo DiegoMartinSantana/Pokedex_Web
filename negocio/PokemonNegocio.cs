@@ -48,6 +48,11 @@ namespace negocio
             {
                 throw ex;
             }
+            finally
+            {
+                datos.cerrarConexion();
+
+            }
 
         }
         public List<Pokemon> listar(string id = "")//recibe un id. si no lo reicbe lo pone vacio.
